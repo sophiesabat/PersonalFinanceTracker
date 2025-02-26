@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -17,7 +19,11 @@ public class Category {
     private Long id;
     private String name;
 
-    public Category(String name) {
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Budget> budgets;
+
+    public Category(String name, List<Budget> budgets) {
         this.name = name;
+        this.budgets = budgets;
     }
 }

@@ -16,10 +16,13 @@ public class Budget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private BigDecimal amount;
-
+    @Column(nullable = false)
+    private BigDecimal amount; //Limit for the category
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
-    
+
+    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     public Budget(BigDecimal amount, Category category, User user) {

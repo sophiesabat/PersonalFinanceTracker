@@ -5,11 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +25,13 @@ public class User {
     @Column(name = "isEnable")
     private boolean isEnable;
 
-    @OneToMany(mappedBy = "user",)
-    private Budget budget;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Budget> budget;
 
-    public User(String name, String email, String password, boolean isEnable, Budget budget) {
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Transaction> transactions;
+
+    public User(String name, String email, String password, boolean isEnable, List<Budget> budget) {
         this.name = name;
         this.email = email;
         this.password = password;
