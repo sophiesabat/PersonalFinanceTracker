@@ -1,7 +1,8 @@
-package com.sofiiasabat.petprojectpersonalfinancetracker.mapper;
+package com.sofiiasabat.petprojectpersonalfinancetracker.mapper.implementation;
 
 import com.sofiiasabat.petprojectpersonalfinancetracker.dto.UserDTO;
 import com.sofiiasabat.petprojectpersonalfinancetracker.entity.User;
+import com.sofiiasabat.petprojectpersonalfinancetracker.mapper.UserMapper;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
@@ -16,7 +17,7 @@ public class UserMapperImplementation implements UserMapper {
         userDTO.setName(user.getName());
         userDTO.setEmail(user.getEmail());
         userDTO.setPassword(user.getPassword());
-        userDTO.setBudgets(user.getBudget());
+        userDTO.setBudgets(user.getBudgets());
         userDTO.setTransactions(user.getTransactions());
 
         return userDTO;

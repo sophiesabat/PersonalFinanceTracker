@@ -6,5 +6,4 @@ import com.sofiiasabat.petprojectpersonalfinancetracker.entity.User;
 public interface UserMapper {
 
     UserDTO toUserDTO(User user);
-
 }

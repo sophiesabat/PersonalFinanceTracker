@@ -5,10 +5,9 @@ import com.sofiiasabat.petprojectpersonalfinancetracker.entity.User;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface UserDetailsService {
+public interface UserService {
 
     void addUser(User user);
 
-    UserDTO findByEmail(String email);
-
+    UserDTO getByEmail(String email);
 }

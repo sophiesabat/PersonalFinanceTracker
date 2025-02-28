@@ -22,7 +22,7 @@ public class User {
     private boolean isEnable;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Budget> budget;
+    private List<Budget> budgets;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Transaction> transactions;
@@ -59,12 +59,12 @@ public class User {
         isEnable = enable;
     }
 
-    public List<Budget> getBudget() {
-        return budget;
+    public List<Budget> getBudgets() {
+        return budgets;
     }
 
-    public void setBudget(List<Budget> budget) {
-        this.budget = budget;
+    public void setBudgets(List<Budget> budgets) {
+        this.budgets = budgets;
     }
 
     public List<Transaction> getTransactions() {

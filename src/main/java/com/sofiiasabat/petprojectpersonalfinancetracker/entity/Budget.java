@@ -1,22 +1,20 @@
 package com.sofiiasabat.petprojectpersonalfinancetracker.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Table(name = "budget")
 public class Budget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @Column(name = "name")
+    private String name;
+    @Column(name = "amount", nullable = false)
     private BigDecimal amount; //Limit for the category
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
@@ -25,9 +23,35 @@ public class Budget {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    public Budget(BigDecimal amount, Category category, User user) {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
         this.user = user;
     }
 }

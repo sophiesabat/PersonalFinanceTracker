@@ -2,8 +2,7 @@ package com.sofiiasabat.petprojectpersonalfinancetracker.controller;
 
 import com.sofiiasabat.petprojectpersonalfinancetracker.dto.UserDTO;
 import com.sofiiasabat.petprojectpersonalfinancetracker.entity.User;
-import com.sofiiasabat.petprojectpersonalfinancetracker.mapper.UserMapper;
-import com.sofiiasabat.petprojectpersonalfinancetracker.service.implementation.UserDetailsServiceImpl;
+import com.sofiiasabat.petprojectpersonalfinancetracker.service.implementation.UserServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +13,9 @@ import java.net.URI;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserDetailsServiceImpl userDetailsServiceImpl;
+    private final UserServiceImpl userDetailsServiceImpl;
 
-    public UserController(UserDetailsServiceImpl userDetailsServiceImpl) {
+    public UserController(UserServiceImpl userDetailsServiceImpl) {
         this.userDetailsServiceImpl = userDetailsServiceImpl;
     }
 
@@ -26,9 +25,8 @@ public class UserController {
     }
 
     @GetMapping("/findByEmail/{email}")
-    public ResponseEntity<UserDTO> findByEmail(@PathVariable String email) {
-
-        UserDTO userDTO = userDetailsServiceImpl.findByEmail(email);
+    public ResponseEntity<UserDTO> getByEmail(@PathVariable String email) {
+        UserDTO userDTO = userDetailsServiceImpl.getByEmail(email);
 
         return ResponseEntity.created(URI.create("/users/" + userDTO.getEmail())).body(userDTO);
     }
